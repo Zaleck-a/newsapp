@@ -2,23 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+
+import { NewsModule } from './blog-news/news.module';
 import { FooterComponent } from './footer/footer.component';
-import { NewsPageComponent } from './blog-news/news-page/news-page.component';
-import { NewsListComponent } from './blog-news/news-list/news-list.component';
-import { NewsItemComponent } from './blog-news/news-item/news-item.component';
-import { NewsFooterComponent } from './blog-news/news-footer/news-footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    NewsPageComponent,
-    NewsListComponent,
-    NewsItemComponent,
-    NewsFooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NewsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
