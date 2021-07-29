@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
+import { Article } from '../models/news.model';
 
 @Component({
   selector: 'app-news-page',
@@ -8,13 +9,21 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class NewsPageComponent implements OnInit {
 
+  news: Article[] = [];
 
 
   constructor( private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.getNewsSportsMx();
+  }
+
+  getNewsSportsMx(){
     this.newsService.topNewsSportsMx()
-      .subscribe(e => console.log(e));
+      .subscribe( (news: Article[]) => {
+        this.news = news;
+        console.log(this.news);
+      });
   }
 
 }

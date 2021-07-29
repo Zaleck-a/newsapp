@@ -5,6 +5,7 @@ import { NewsPageComponent } from './news-page/news-page.component';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsItemComponent } from './news-item/news-item.component';
 import { NewsFooterComponent } from './news-footer/news-footer.component';
+import { NoimgPipe } from './pipes/noimg.pipe';
 
 
 @NgModule({
@@ -13,9 +14,10 @@ import { NewsFooterComponent } from './news-footer/news-footer.component';
     NewsListComponent,
     NewsItemComponent,
     NewsFooterComponent,
+    NoimgPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     NewsPageComponent
