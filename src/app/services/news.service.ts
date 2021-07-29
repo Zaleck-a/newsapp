@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 
 import { map } from 'rxjs/operators';
-import { NewsResponse } from '../blog-news/models/news.model';
+import { Author, NewsResponse } from '../blog-news/models/news.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,10 @@ export class NewsService {
   totalPages: number[] = [];
   page: number = 1;
 
-  constructor(private http: HttpClient) { 
+  authors: Author[] = []
 
+  constructor(private http: HttpClient) { 
+    
   }
 
   public get url() : string {
@@ -29,7 +31,20 @@ export class NewsService {
   topNewsSportsMx(){
     return this.http.get<NewsResponse>( this.url )
       .pipe(
-        map( (res: NewsResponse) =>  res.articles)
+        map( (res: NewsResponse) =>  {
+          
+         const names: any[] = [];
+
+          this.authors.map((author: any) => {
+            names.push(author.name);
+          })
+          
+          for( let i = 0; i < res.articles.length; i++ ){
+            res.articles[i].author = names[i];
+          }
+          
+          return res.articles
+        })
       )
   }
 
@@ -46,5 +61,16 @@ export class NewsService {
           }
           )
       )
+  }
+
+  getAuthor(){
+    return this.http.get<any>(`https://randomuser.me/api/?page=${this.page}&results=10&nat=es&inc=name`)
+      .pipe(
+        map( res => res.results)
+      ).subscribe(
+        authors => {
+          this.authors = authors
+        }
+      );
   }
 }

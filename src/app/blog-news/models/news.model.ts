@@ -6,7 +6,7 @@ export interface NewsResponse {
 
 export interface Article {
     source:      Source;
-    author:      null | string;
+    author:      Author;
     title:       string;
     description: null | string;
     url:         string;
@@ -18,4 +18,10 @@ export interface Article {
 export interface Source {
     id:   null | string;
     name: string;
+}
+
+export interface Author {
+    title?: string;
+    first?: string;
+    last?:  string;
 }

@@ -10,10 +10,12 @@ import { Article } from '../models/news.model';
 export class NewsPageComponent implements OnInit {
 
   news: Article[] = [];
+  
 
   constructor( private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.newsService.getAuthor();
     this.getNewsSportsMx();
   }
 
@@ -25,6 +27,7 @@ export class NewsPageComponent implements OnInit {
   }
 
   changePage(page: number){
+    this.newsService.getAuthor();
     this.newsService.page = page;
     this.getNewsSportsMx();
   }
