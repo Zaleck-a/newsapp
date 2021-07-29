@@ -1,1 +1,30 @@
-<p>news-footer works!</p>
+<nav class="navbar">
+    <div class="container-fluid justify-content-center">
+        <ul class="pagination">
+            <li (click)="previousPage()" 
+                [ngClass]="{'disabled': newsService.page <= 1}"
+                class="page-item">
+                <a class="page-link" href="#">
+                    Previous
+                </a>
+            </li>
+
+            <li (click)="selectPage(page)" 
+                [ngClass]="{'active': newsService.page === page}" 
+                class="page-item" 
+                *ngFor="let page of totalPages">
+            <a class="page-link" href="#">
+                {{page}}
+            </a>
+            </li>
+
+            <li (click)="nextPage()" 
+                [ngClass]="{'disabled': newsService.page >= this.totalPages.length}" 
+                class="page-item">
+                <a class="page-link" href="#">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

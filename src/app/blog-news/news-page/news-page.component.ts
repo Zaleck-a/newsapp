@@ -11,7 +11,6 @@ export class NewsPageComponent implements OnInit {
 
   news: Article[] = [];
 
-
   constructor( private newsService: NewsService) { }
 
   ngOnInit(): void {
@@ -22,8 +21,12 @@ export class NewsPageComponent implements OnInit {
     this.newsService.topNewsSportsMx()
       .subscribe( (news: Article[]) => {
         this.news = news;
-        console.log(this.news);
       });
+  }
+
+  changePage(page: number){
+    this.newsService.page = page;
+    this.getNewsSportsMx();
   }
 
 }

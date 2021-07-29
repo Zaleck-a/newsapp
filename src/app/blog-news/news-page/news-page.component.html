@@ -1,3 +1,4 @@
+<h1 class="text-center">Sport News</h1>
 <div class="row mt-4 justify-content-center">
     <div class="col-8">
         <div class="card mb-3" *ngFor="let new of news">
@@ -5,8 +6,11 @@
             <div class="card-body">
               <h5 class="card-title">{{new.title}}</h5>
               <p class="card-text">{{new.description}}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <hr>
+              <p class="card-text"><small class="text-muted">{{new.author}}</small></p>
             </div>
         </div>
     </div>
 </div>
+
+<app-news-footer (page)=changePage($event)></app-news-footer>
